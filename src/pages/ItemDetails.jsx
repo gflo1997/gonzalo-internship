@@ -31,7 +31,7 @@ const ItemDetails = () => {
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             {loading ? (
-              <div className="row">
+              <div data-aos="fade-in" data-aos-duration="400" className="row">
                 <div className="col-md-6 text-center">
                   <div className="skeleton NFT-skeleton"></div>
                 </div>
@@ -85,7 +85,7 @@ const ItemDetails = () => {
                 </div>
               </div>
             ) : (
-              <div className="row">
+              <div data-aos="fade-in" data-aos-duration="400" className="row">
                 <div className="col-md-6 text-center">
                   <img
                     src={itemDetails.nftImage}

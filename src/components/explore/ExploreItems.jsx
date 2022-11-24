@@ -3,13 +3,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import CountdownTimer from "../UI/CountdownTimer";
 
-
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(8);
   const navigate = useNavigate();
-
 
   async function fetchExploreItems() {
     setLoading(true);
@@ -25,8 +23,8 @@ const ExploreItems = () => {
   }, []);
 
   const loadMore = () => {
-    setVisibleItems((prevValue) => prevValue + 4)
-  }
+    setVisibleItems((prevValue) => prevValue + 4);
+  };
 
   async function filterNFTs(value) {
     setLoading(true);
@@ -37,11 +35,14 @@ const ExploreItems = () => {
     setLoading(false);
   }
 
-
   return (
     <>
       <div>
-        <select id="filter" defaultValue="Default" onChange={(event) => filterNFTs (event.target.value)}>
+        <select
+          id="filter"
+          defaultValue="Default"
+          onChange={(event) => filterNFTs(event.target.value)}
+        >
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -51,6 +52,8 @@ const ExploreItems = () => {
       {loading
         ? new Array(8).fill(0).map((_, index) => (
             <div
+              data-aos="fade-in"
+              data-aos-duration="900"
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
@@ -81,6 +84,8 @@ const ExploreItems = () => {
           ))
         : exploreItems.slice(0, visibleItems).map((exploreItem) => (
             <div
+              data-aos="fade-in"
+              data-aos-duration="900"
               key={exploreItem.id}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
@@ -88,7 +93,7 @@ const ExploreItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to= {`/author/${exploreItem.authorId}`}
+                    to={`/author/${exploreItem.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                   >
@@ -148,9 +153,16 @@ const ExploreItems = () => {
             </div>
           ))}
       <div className="col-md-12 text-center">
-        {visibleItems >= exploreItems.length ? null : <Link to="" onClick={loadMore} id="loadmore" className="btn-main lead">
-          Load more
-        </Link>}
+        {visibleItems >= exploreItems.length ? null : (
+          <Link
+            to=""
+            onClick={loadMore}
+            id="loadmore"
+            className="btn-main lead"
+          >
+            Load more
+          </Link>
+        )}
       </div>
     </>
   );
