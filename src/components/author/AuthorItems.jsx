@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AuthorItems = ({ authors, loading }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="de_tab_content">
       <div className="tab-1">
